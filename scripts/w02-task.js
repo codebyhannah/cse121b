@@ -3,9 +3,9 @@
 /* Step 1 - Setup type tasks - no code required */
 
 /* Step 2 - Variables */
-var fullName = "Hannah Anderson";
-var currentYear = 2023;
-var profilePicture = "images/IMG_1994.PNG"
+let fullName = "Hannah Anderson";
+let currentYear = 2023;
+let profilePicture = "images/IMG_1994.PNG"
 
 /* Step 3 - Element Variables */
 const nameElement = document.getElementById("name");
@@ -20,9 +20,9 @@ imageElement.setAttribute("src", profilePicture);
 imageElement.setAttribute("alt", `Profile image of ${fullName}`);
 
 /* Step 5 - Array */
-var favFoods = ["Rasberries","Blackberries","Nine Boy Curry","Potato Soup","Chili","Caramel Ice Cream","Lazy Daisy Cake"];
+let favFoods = ["Rasberries","Blackberries","Nine Boy Curry","Potato Soup","Chili","Caramel Ice Cream","Lazy Daisy Cake"];
 foodElement.innerText = favFoods;
-var singleFood = "Chicken Basil Soup";
+let singleFood = "Chicken Basil Soup";
 favFoods.push(singleFood);
 foodElement.innerHTML += `<br>${favFoods}`;
 favFoods.shift();
