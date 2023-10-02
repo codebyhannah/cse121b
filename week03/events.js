@@ -46,13 +46,9 @@ function completeTask(taskElement) {
   // tasks[taskIndex].completed ? false : true is a ternary expression.
   // If the first part is true (left of the ?), then the value on the left of the : will get returned, otherwise the value on the right of the : will be returned.
   tasks[taskIndex].completed = tasks[taskIndex].completed ? false : true;
-  
-  console.log("three");
-  console.log(tasks[taskIndex].completed);
   // toggle adds a class if it is not there, removes it if it is.
   taskElement.classList.toggle("strike");
   console.log(tasks);
-  console.log("four");
 }
 
 function manageTasks(event) {
