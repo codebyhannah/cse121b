@@ -29,29 +29,9 @@ document.getElementById("subtractNumbers").addEventListener("click", subtractNum
 
 /* Arrow Function - Multiply Numbers */
 var multiply = (number1, number2) => number1 * number2;
-// arrow function can't return an assignment so it can't be an arrow function
-var multiplyNumbers = () => document.getElementById("product").value = multiply(Number.document.getElementById("factor1").value, Number.document.getElementById("factor2").value);
-//stops working at getElementById("factor1")
 
-//var multiplyNumbers = () => console.log(Number.document.getElementById("factor1").value); 
-// works
-//var multiplyNumbers = () => console.log(Number.document.getElementById("factor1").value);
-// does not work
-/*
-var multiplyNumbers = () => {
-    console.log(document.getElementById("factor1").value);
-    //works
-    console.log(Number.document.getElementById("factor1").value);
-    //does not work
-    let factor1 = Number.document.getElementById("factor1").value;
-    console.log(factor1);
-    let factor2 = Number.document.getElementById("factor2").value;
-    console.log(factor2);
-    console.log(multiply(factor1, factor2));
-    document.getElementById("product").value = multiply(factor1, factor2);
-    console.log(document.getElementById("product").value);
-}
-*/
+var multiplyNumbers = () => document.getElementById("product").value = multiply(Number(document.getElementById("factor1").value), Number(document.getElementById("factor2").value));
+
 document.getElementById("multiplyNumbers").addEventListener("click", multiplyNumbers);
 
 /* Open Function Use - Divide Numbers */
@@ -76,11 +56,11 @@ let numbersArray = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 document.getElementById("array").innerHTML = numbersArray;
 
 /* Output Odds Only Array */
-let odds = numbersArray.filter((num) => num % 2 != 0);
+let odds = numbersArray.filter((num) => num % 2 !== 0);
 document.getElementById("odds").innerHTML = odds;
 
 /* Output Evens Only Array */
-let evens = numbersArray.filter((num) => num % 2 == 0);
+let evens = numbersArray.filter((num) => num % 2 === 0);
 document.getElementById("evens").innerHTML = evens;
 
 /* Output Sum of Org. Array */
