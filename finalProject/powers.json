@@ -1,7 +1,7 @@
 {
     "powers" : {
         "fire" : ["Pyrokinesis", "Fire Resistance", "Flaming Blades", "Phoenix Blaze", "Heat Wave", "Fire Breath"],
-        "ice" : ["Cryokinesis, Cold Resistance, Ice Swords, Blizzard, Freezing Breath, Abosolute Zero"],
+        "ice" : ["Cryokinesis", "Cold Resistance", "Ice Swords", "Blizzard", "Freezing Breath", "Abosolute Zero"],
         "air" : ["Aerokinesis", "Invisibility", "Flight", "Intangibility", "Whirlwind", "Windstorm"],
         "earth" : ["Geokinesis", "Earthquake", "Stone Skin", "Mud Golem", "Quicksand", "Boulder Toss"],
         "water" : ["Hydrokinesis", "Waterbreathing", "Whirlpool", "Tsunami", "Marine Telepathy", "Extreme Swimming Prowess"],
