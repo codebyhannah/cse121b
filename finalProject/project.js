@@ -15,6 +15,8 @@ var hero = {
     colors : [],
 }
 
+// randomize isn't working on the categories and powers right now.
+
 var heroElement = document.getElementById("heroDiv");
 
 const getPowers = async () => {
@@ -93,7 +95,7 @@ function selectGender(){
 }
 var powerNum = 1;
 function selectPowerNum(){
-    if (document.getElementById("powerNum").value = "random") {
+    if (document.getElementById("powerNum").value == "random") {
         powerNum = getRandomInt(1,() => {
             var numPowers = 0;
             for (var category in powers.powers) {
@@ -109,9 +111,9 @@ function selectPowerNum(){
 var selectedCategoriesList = []
 function selectCategories(){
     var categories = []
-    var categoryNum = 0;
-    if (document.getElementById("categoryNum").value = "random") {
-        powerNum = getRandomInt(1,Object.keys(powers.powers).length);
+    var categoryNum = 1;
+    if (document.getElementById("categoryNum").value == "random") {
+        categoryNum = getRandomInt(1,Object.keys(powers.powers).length);
     } else {
         categoryNum = parseInt(document.getElementById("categoryNum").value);
     }
@@ -125,6 +127,7 @@ function selectCategories(){
 }
 
 function generatePowers() {
+    hero.powers = [];
     for(var i = 0; i < powerNum; i++) {
         var num = getRandomInt(0,selectedCategoriesList.length-1)
         hero.powers.push(selectedCategoriesList[num]);
@@ -132,10 +135,10 @@ function generatePowers() {
 }
 
 function selectColors(){
-    hero.colors = []
-    var colorNum;
-    if (document.getElementById("colorNum").value = "random") {
-        powerNum = getRandomInt(1,numColors);
+    hero.colors = [];
+    var colorNum = 1;
+    if (document.getElementById("colorNum").value == "random") {
+        colorNum = getRandomInt(1,numColors);
     } else {
         colorNum = parseInt(document.getElementById("colorNum").value);
     }
