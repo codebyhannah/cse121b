@@ -1,7 +1,9 @@
+import colorObj from "./colors.js"
+
 var powers;
 
 //import colors as a module
-var numColors = 10;
+var numColors = colorObj.basicColors.length;
 
 var hero = {
     name : "",
@@ -10,10 +12,10 @@ var hero = {
     hideout : "",
     powers : [],
     weakness : "",
+    colors : [],
 }
-console.log(hero)
 
-const heroElement = document.getElementById("heroDiv");
+var heroElement = document.getElementById("heroDiv");
 
 const getPowers = async () => {
     const response = await fetch("https://run.mocky.io/v3/13e6871c-b577-4495-b831-18166d7ee224");
@@ -22,19 +24,18 @@ const getPowers = async () => {
         //console.log(powers);
         //console.log(powers.powers.fire); //requires powers twice to work
     }
-    displayHero();
+    doThingsThatRelyOnTheJson();
 }
 
-function displayHero() {
+function doThingsThatRelyOnTheJson() {
     intializeSelectors();
 }
 
 // Initialize Selectors to correct number of options
 function intializeSelectors(){
-    var numCategories = 0;
+    var numCategories = Object.keys(powers.powers).length;
     var numPowers = 0;
-    for (category in powers.powers) {
-        numCategories++;
+    for (var category in powers.powers) {
         numPowers += powers.powers[category].length;
     }
     var powerNumSelectElement = document.getElementById("powerNum");
@@ -89,50 +90,56 @@ function selectGender(){
             break;
     }
     hero.gender = gender;
-    console.log(hero);
 }
 var powerNum = 1;
-function selectPowers(){
-    powerNum = document.getElementById("");
+function selectPowerNum(){
+    powerNum = parseInt(document.getElementById("powerNum").value);
 }
-var selectCategories = 1;
+var selectedCategoriesList = []
 function selectCategories(){
+    var categories = []
+    var categoryNum = parseInt(document.getElementById("categoryNum").value);
+    for(var i = 0; i < categoryNum; i++) {
+        categories.push(getRandomInt(0,Object.keys(powers.powers).length-1));
+    }
+    categories.forEach(num => {
+        var name = Object.keys(powers.powers)[num]
+        selectedCategoriesList = selectedCategoriesList.concat(powers.powers[name]);
+    });
+}
 
+function generatePowers() {
+    for(var i = 0; i < powerNum; i++) {
+        var num = getRandomInt(0,selectedCategoriesList.length-1)
+        hero.powers.push(selectedCategoriesList[num]);
+    }
 }
 
 function selectColors(){
-
+    hero.colors = []
+    var colorNum = parseInt(document.getElementById("colorNum").value);
+    for(var i = 0; i < colorNum; i++) {
+        var num = getRandomInt(0,colorNum-1)
+        hero.colors.push(colorObj.basicColors[num]);
+    }
 }
 
 function generateHero(){
+    generatePowers();
 
+    heroElement.innerHTML = `<p>Name: ${hero.name}</p><p>Secret Identity: ${hero.secretIdentity}</p><p>Gender: ${hero.gender}</p><p>Hideout: ${hero.hideout}</p><p>Powers: ${hero.powers}</p><p>Weakness: ${hero.weakness}</p><p>Colors: ${hero.colors}</p>`
 }
 
-/*
-•	Use ES modules.
-o	Module containing basic superhero format (object) and all related methods.
-o	Module for the name/secret identity/hideout etc. generator, can accept two inputs, like the first letter of first name, and first letter of last name, or first letter of childhood home, or whatever, and use those to pick which things are used, or do it entirely randomly, user’s choice. Puts together two strings from the lists to get the end result. 
-
-•	Include conditional branching. (if/else and switch)
-o	Use with the inputs and selections.
-
-•	Exclusively use template literals when building strings.
-o	Do this in the display of the finalized hero.
-•	Use an array and at least one array method. 
-o	Array of powers, each of which might be an object so as to include power categories, like fire, ice, superhuman abilities (super strength, super speed, super senses), and the like so they can be sorted by those specific categories for specialized heroes. User can choose to have the super hero’s powers only chosen from one specialized category, two specialized categories, or from all categories. 
-•	The project must consume external data using Fetch and where the data is delivered in JSON format be that through a third-party API or your own data source.
-o	Put lists of powers, name pieces, secret identity name pieces, hideout locations, etc. in the JSON file. Is there a JSON out there with a list of super powers already?
-*/
 getPowers();
 
 // Event Listeners
 
 document.getElementById("gender").addEventListener("change", selectGender);
 
-document.getElementById("powerNum").addEventListener("change", selectPowers);
+document.getElementById("powerNum").addEventListener("change", selectPowerNum);
 
 document.getElementById("categoryNum").addEventListener("change", selectCategories);
 
 document.getElementById("colorNum").addEventListener("change", selectColors);
 
-document.getElementById("generate").addEventListener("click", generateHero);
+document.getElementById("generateButton").addEventListener("click", generateHero);
