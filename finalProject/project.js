@@ -93,12 +93,28 @@ function selectGender(){
 }
 var powerNum = 1;
 function selectPowerNum(){
-    powerNum = parseInt(document.getElementById("powerNum").value);
+    if (document.getElementById("powerNum").value = "random") {
+        powerNum = getRandomInt(1,() => {
+            var numPowers = 0;
+            for (var category in powers.powers) {
+                numPowers += powers.powers[category].length;
+            }
+            return numPowers;
+        })
+    } else {
+        powerNum = parseInt(document.getElementById("powerNum").value);
+    }
+    
 }
 var selectedCategoriesList = []
 function selectCategories(){
     var categories = []
-    var categoryNum = parseInt(document.getElementById("categoryNum").value);
+    var categoryNum = 0;
+    if (document.getElementById("categoryNum").value = "random") {
+        powerNum = getRandomInt(1,Object.keys(powers.powers).length);
+    } else {
+        categoryNum = parseInt(document.getElementById("categoryNum").value);
+    }
     for(var i = 0; i < categoryNum; i++) {
         categories.push(getRandomInt(0,Object.keys(powers.powers).length-1));
     }
@@ -117,7 +133,12 @@ function generatePowers() {
 
 function selectColors(){
     hero.colors = []
-    var colorNum = parseInt(document.getElementById("colorNum").value);
+    var colorNum;
+    if (document.getElementById("colorNum").value = "random") {
+        powerNum = getRandomInt(1,numColors);
+    } else {
+        colorNum = parseInt(document.getElementById("colorNum").value);
+    }
     for(var i = 0; i < colorNum; i++) {
         var num = getRandomInt(0,colorNum-1)
         hero.colors.push(colorObj.basicColors[num]);
